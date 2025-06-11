@@ -1,0 +1,23 @@
+version: '3.8'
+services:
+  api:
+    build: ./api
+    ports:
+      - "3000:3000"
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - MONGO_URI=mongodb://mongo:27017/snippets
+    depends_on:
+      - mongo
+
+  ui:
+    build: ./ui
+    ports:
+      - "3030:5173"
+    environment:
+      - API_URL=http://localhost:3000
+
+  mongo:
+    image: mongo:5
+    ports:
+      - "27017:27017"
