@@ -11,6 +11,7 @@ declare module "@remix-run/node" {
 export default defineConfig({
   server: {
     host: "0.0.0.0",
+    allowedHosts: ["localhost", "snippet.francopan.com.br"],
   },
   plugins: [
     remix({
