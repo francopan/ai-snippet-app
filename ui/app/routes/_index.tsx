@@ -31,17 +31,7 @@ export default function Index() {
 
       <Box display="flex" flexDirection="column" gap={4}>
         {snippets.map((snippet) => (
-          <Box
-            key={snippet._id}
-            borderWidth="1px"
-            borderRadius="lg"
-            p={4}
-            bg="gray.50"
-            transition="all 0.2s"
-            _hover={{ boxShadow: "md", bg: "gray.100" }}
-          >
-            <SnippetAccordion summary={snippet.summary} _id={snippet._id} text={snippet.text} key={snippet._id}/>
-          </Box>
+            <SnippetAccordion summary={snippet.summary} _id={snippet._id} text={snippet.text} key={snippet._id} showLink={true}/>
         ))}
       </Box>
     </Box>

@@ -29,6 +29,7 @@ export default function SnippetView() {
         _id={snippet._id}
         text={snippet.text}
         key={snippet._id}
+        showLink={false}
       />
     </Box>
   );

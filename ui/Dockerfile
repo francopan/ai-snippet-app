@@ -2,5 +2,5 @@ FROM node:20
 WORKDIR /app
 COPY . .
 RUN npm install
-# CMD npm test && npm run dev
-CMD ["npm", "run", "dev"]
+RUN npm run test
+CMD npm run dev

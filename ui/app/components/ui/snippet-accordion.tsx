@@ -1,7 +1,9 @@
-import { Accordion, Code, Text, Spinner, HStack } from "@chakra-ui/react";
+import { Link as RouterLink } from 'react-router-dom';
+import { Button, Text, Spinner, HStack, Accordion, Code } from "@chakra-ui/react";
 import { Snippet } from "types/snippet.type";
+import { Link } from '@remix-run/react';
 
-export function SnippetAccordion(snippet: Snippet) {
+export function SnippetAccordion(snippet: Snippet & {showLink?: boolean}) {
   const isLoading = !snippet.summary || snippet.summary.trim() === "";
 
   return (
@@ -17,9 +19,21 @@ export function SnippetAccordion(snippet: Snippet) {
                 </Text>
               </>
             ) : (
-              <Text fontWeight="bold" fontSize="md" flex="1">
-                {snippet.summary}
-              </Text>
+              <>
+                <Text fontWeight="bold" fontSize="md" flex="1">
+                  {snippet.summary}
+                </Text>
+              </>
+            )}
+            {snippet.showLink && (
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    colorScheme="blue"
+                    marginBottom={2}
+                  >
+                    <Link  to={`/${snippet._id}`}>  Go to snippet</Link>
+                  </Button>
             )}
           </HStack>
           <Accordion.ItemIndicator />
