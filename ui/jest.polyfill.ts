@@ -1,4 +1,5 @@
-if (typeof globalThis.structuredClone !== "function") {
-    globalThis.structuredClone = (val: any) => JSON.parse(JSON.stringify(val));
+import structuredClone from '@ungap/structured-clone';
+
+if (typeof globalThis.structuredClone !== 'function') {
+  (globalThis as any).structuredClone = structuredClone;
 }
-  

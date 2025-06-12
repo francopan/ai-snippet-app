@@ -1,12 +1,20 @@
-import { Link as RouterLink } from 'react-router-dom';
-import { Button, Text, Spinner, HStack, Accordion, Code } from "@chakra-ui/react";
-import { Snippet } from "types/snippet.type";
+import { Accordion, Box, Button, Code, HStack, Spinner, Text } from "@chakra-ui/react";
 import { Link } from '@remix-run/react';
+import { Snippet } from "types/snippet.type";
 
 export function SnippetAccordion(snippet: Snippet & {showLink?: boolean}) {
   const isLoading = !snippet.summary || snippet.summary.trim() === "";
 
   return (
+    <Box
+            key={snippet._id}
+            borderWidth="1px"
+            borderRadius="lg"
+            p={4}
+            
+            transition="all 0.2s"
+ 
+          >
     <Accordion.Root collapsible defaultValue={[snippet._id]}>
       <Accordion.Item value={snippet._id}>
         <Accordion.ItemTrigger>
@@ -25,20 +33,19 @@ export function SnippetAccordion(snippet: Snippet & {showLink?: boolean}) {
                 </Text>
               </>
             )}
-            {snippet.showLink && (
-                  <Button
-                    size="sm"
-                    variant="outline"
-                    colorScheme="blue"
-                    marginBottom={2}
-                  >
-                    <Link  to={`/${snippet._id}`}>  Go to snippet</Link>
-                  </Button>
-            )}
           </HStack>
           <Accordion.ItemIndicator />
         </Accordion.ItemTrigger>
         <Accordion.ItemContent>
+          <Accordion.ItemBody>
+          {snippet.showLink && snippet._id && (
+              <Link style={{ padding: 2}} to={ `/${snippet._id}`}>
+              <Button size="sm" colorScheme="blue" variant={"outline"}>
+                Go to Snippet
+              </Button>
+            </Link>
+            )} 
+          </Accordion.ItemBody>
           <Accordion.ItemBody>
             <Code
               whiteSpace="pre-wrap"
@@ -52,5 +59,6 @@ export function SnippetAccordion(snippet: Snippet & {showLink?: boolean}) {
         </Accordion.ItemContent>
       </Accordion.Item>
     </Accordion.Root>
+    </Box>
   );
 }
