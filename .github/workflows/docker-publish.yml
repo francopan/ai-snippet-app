@@ -21,18 +21,18 @@ jobs:
 
     - name: Build and push api image
       run: |
-        docker build -t francopan/ai-snippet-api:${{ github.sha }} ./api
-        docker push francopan/ai-snippet-api:${{ github.sha }}
+        docker build -t francobpan/ai-snippet-api:${{ github.sha }} ./api
+        docker push francobpan/ai-snippet-api:${{ github.sha }}
 
     - name: Build and push ui image
       run: |
-        docker build -t francopan/ai-snippet-ui:${{ github.sha }} ./ui
-        docker push francopan/ai-snippet-ui:${{ github.sha }}
+        docker build -t francobpan/ai-snippet-ui:${{ github.sha }} ./ui
+        docker push francobpan/ai-snippet-ui:${{ github.sha }}
 
     - name: Tag and push latest images
       run: |
-        docker tag francopan/ai-snippet-api:${{ github.sha }} francopan/ai-snippet-api:latest
-        docker push francopan/ai-snippet-api:latest
+        docker tag francobpan/ai-snippet-api:${{ github.sha }} francobpan/ai-snippet-api:latest
+        docker push francobpan/ai-snippet-api:latest
 
-        docker tag francopan/ai-snippet-ui:${{ github.sha }} francopan/ai-snippet-ui:latest
-        docker push francopan/ai-snippet-ui:latest
+        docker tag francobpan/ai-snippet-ui:${{ github.sha }} francobpan/ai-snippet-ui:latest
+        docker push francobpan/ai-snippet-ui:latest
