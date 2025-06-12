@@ -15,7 +15,7 @@ services:
     ports:
       - "3030:5173"
     environment:
-      - API_URL=http://localhost:3000
+      - PUBLIC_API_URL=${PUBLIC_API_URL}
 
   mongo:
     image: mongo:6
