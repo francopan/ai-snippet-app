@@ -17,7 +17,7 @@ describe('LLMService', () => {
     const mockReply = 'Hi there!';
     const mockResponse: ChatResult = {
         message: { role: ChatRole.assistant, content: mockReply },
-        model: 'tinyllama',
+        model: 'llama3',
         created_at: new Date().toString(),
         done: true,
         done_reason: '',
@@ -43,7 +43,7 @@ describe('LLMService', () => {
         'api_key': process.env.CHAT_API_KEY!,
       }),
       body: JSON.stringify({
-        model: 'tinyllama',
+        model: 'llama3',
         messages,
         stream: false,
       }),

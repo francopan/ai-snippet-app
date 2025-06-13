@@ -54,7 +54,7 @@ export class SnippetService {
             }
         ];
 
-        const summary = await this.llmService.chat(messages, 'llama3');
+        const summary = await this.llmService.chat(messages);
 
         await SnippetModel.findByIdAndUpdate(snippetId, { summary });
     } catch (err) {

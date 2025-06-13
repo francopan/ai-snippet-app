@@ -3,7 +3,7 @@ import { ChatResult } from "../types/chat-result.type";
 
 export class LLMService {
     private apiKey = process.env.CHAT_API_KEY!;
-    private model = "tinyllama";
+    private model = "llama3";
     private apiUrl = "https://ollama.francopan.com.br/api/chat";
   
       
