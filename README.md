@@ -111,9 +111,8 @@ curl http://localhost:3000/snippets
 ## Post-challenge Reflection
 
 - **What I’d improve given more time:**  
-  - Setup a CI pipeline (GitHub Actions) to update images automatically in server.  
+  - Setup a CI pipeline (GitHub Actions) to update images automatically in server (it currently builds and uploads to DockerHub).  
   - Enhance error handling, adding translation keys and reusing strings, also improving input validation.  
-  - Fix CMD script to not use dev script.
   - Implement JWT authentication.
   - Add pagination to list, allow user to delete or retry snippet summary generation.
 
