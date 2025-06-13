@@ -30,8 +30,6 @@ export class LLMService {
             const json = await response.json();
             const reply = (json as ChatResult).message.content
 
-            console.log(reply)
-        
             if (!reply) {
                 throw new Error("No reply found in Chat response");
             }

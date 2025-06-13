@@ -6,11 +6,11 @@ import { LLMService } from "./llm.service";
 
 export class SnippetService {
 
-    private llmService: LLMService;
+  private llmService: LLMService;
 
-    constructor(llmService: LLMService) {
-        this.llmService = llmService;
-    }
+  constructor(llmService: LLMService) {
+      this.llmService = llmService;
+  }
  
   async createSnippet(data: { text: string }): Promise<SnippetDocumentInterface> {
     const snippet = new SnippetModel({
@@ -25,8 +25,6 @@ export class SnippetService {
     return savedSnippet;
   }
     
-     
-
   async getAllSnippets(): Promise<SnippetDocumentInterface[]> {
     return await SnippetModel.find().exec();
   }
@@ -56,7 +54,7 @@ export class SnippetService {
             }
         ];
 
-        const summary = await this.llmService.chat(messages);
+        const summary = await this.llmService.chat(messages, 'llama3');
 
         await SnippetModel.findByIdAndUpdate(snippetId, { summary });
     } catch (err) {
