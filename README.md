@@ -115,6 +115,7 @@ curl http://localhost:3000/snippets
   - Enhance error handling, adding translation keys and reusing strings, also improving input validation.  
   - Implement JWT authentication.
   - Add pagination to list, allow user to delete or retry snippet summary generation.
+  - Add a streamable/live response from LLM.
 
 - **Trade-offs made:**  
   - Kept the AI prompt simple to prioritize core functionality.
