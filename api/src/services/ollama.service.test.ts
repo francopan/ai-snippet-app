@@ -1,13 +1,14 @@
-import { LLMService } from './llm.service';
-import { ChatMessage } from '../types/chat-message.type';
-import { ChatResult } from '../types/chat-result.type';
 import { ChatRole } from '../enums/chat-role.enum';
+import { TextGenerationMessage } from '../types/text-generation-message.type';
+import { ChatResult } from '../types/chat-result.type';
+import { OllamaChatResult } from '../types/ollama-chat-result.type';
+import { OllamaService } from './ollama.service';
 
 global.fetch = jest.fn();
 
-describe('LLMService', () => {
-  const service = new LLMService();
-  const messages: ChatMessage[] = [{ role: ChatRole.user, content: 'Hello' }];
+describe('OllamaService', () => {
+  const service = new OllamaService();
+  const messages: TextGenerationMessage[] = [{ role: ChatRole.user, content: 'Hello' }];
 
   afterEach(() => {
     jest.clearAllMocks();
@@ -15,7 +16,7 @@ describe('LLMService', () => {
 
   it('should return a reply from the chat API', async () => {
     const mockReply = 'Hi there!';
-    const mockResponse: ChatResult = {
+    const mockResponse: OllamaChatResult = {
         message: { role: ChatRole.assistant, content: mockReply },
         model: 'phi3',
         created_at: new Date().toString(),
@@ -34,7 +35,7 @@ describe('LLMService', () => {
       json: jest.fn().mockResolvedValue(mockResponse),
     });
 
-    const result = await service.chat(messages);
+    const result = await service.generate(messages);
 
     expect(fetch).toHaveBeenCalledWith(expect.any(String), expect.objectContaining({
       method: 'POST',
@@ -59,7 +60,7 @@ describe('LLMService', () => {
       statusText: 'Internal Server Error',
     });
 
-    await expect(service.chat(messages)).rejects.toThrow('Chat API error: 500 Internal Server Error');
+    await expect(service.generate(messages)).rejects.toThrow('Chat API error: 500 Internal Server Error');
   });
 
   it('should throw an error if message.content is missing', async () => {
@@ -70,12 +71,12 @@ describe('LLMService', () => {
       json: jest.fn().mockResolvedValue(mockResponse),
     });
 
-    await expect(service.chat(messages)).rejects.toThrow('No reply found in Chat response');
+    await expect(service.generate(messages)).rejects.toThrow('No reply found in Chat response');
   });
 
   it('should throw an error if fetch fails', async () => {
     (fetch as jest.Mock).mockRejectedValue(new Error('Network error'));
 
-    await expect(service.chat(messages)).rejects.toThrow('Network error');
+    await expect(service.generate(messages)).rejects.toThrow('Network error');
   });
 });

@@ -16,6 +16,8 @@
     "test": "jest"
   },
   "dependencies": {
+    "@google/genai": "^1.5.1",
+    "compression": "^1.8.0",
     "cors": "^2.8.5",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
@@ -25,6 +27,7 @@
     "@babel/preset-env": "^7.27.2",
     "@babel/preset-typescript": "^7.27.1",
     "@jest/globals": "^30.0.0",
+    "@types/compression": "^1.8.1",
     "@types/express": "^5.0.3",
     "@types/jest": "^29.5.14",
     "@types/node": "^24.0.0",

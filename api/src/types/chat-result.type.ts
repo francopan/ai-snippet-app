@@ -1,17 +1,12 @@
+import { ChatRole } from "../enums/chat-role.enum";
+
 export interface ChatResult {
     model: string;
     created_at: string;
     message: {
-      role: 'assistant';
+      role: ChatRole.assistant;
       content: string;
     };
-    done_reason: string;
     done: boolean;
-    total_duration: number;
-    load_duration: number;
-    prompt_eval_count: number;
-    prompt_eval_duration: number;
-    eval_count: number;
-    eval_duration: number;
-  }
+}
   

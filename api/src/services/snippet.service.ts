@@ -1,21 +1,20 @@
 import { ChatRole } from "../enums/chat-role.enum";
-import { ChatMessage } from "../types/chat-message.type";
+import { TextGenerationMessage } from "../types/text-generation-message.type";
 import { SnippetDocumentInterface } from "../types/snippet-document-interface.type";
 import { SnippetModel } from "../types/snippet-model.type";
 import { LLMService } from "./llm.service";
 
 export class SnippetService {
-
   private llmService: LLMService;
 
   constructor(llmService: LLMService) {
-      this.llmService = llmService;
+    this.llmService = llmService;
   }
- 
+
   async createSnippet(data: { text: string }): Promise<SnippetDocumentInterface> {
     const snippet = new SnippetModel({
-        text: data.text,
-        summary: null,
+      text: data.text,
+      summary: null,
     });
 
     const savedSnippet = await snippet.save();
@@ -24,7 +23,7 @@ export class SnippetService {
 
     return savedSnippet;
   }
-    
+
   async getAllSnippets(): Promise<SnippetDocumentInterface[]> {
     return await SnippetModel.find().exec();
   }
@@ -33,7 +32,10 @@ export class SnippetService {
     return await SnippetModel.findById(id).exec();
   }
 
-  async updateSnippet(id: string, data: Partial<{ text: string; summary: string }>): Promise<SnippetDocumentInterface | null> {
+  async updateSnippet(
+    id: string,
+    data: Partial<{ text: string; summary: string }>
+  ): Promise<SnippetDocumentInterface | null> {
     return await SnippetModel.findByIdAndUpdate(id, data, { new: true }).exec();
   }
 
@@ -43,23 +45,22 @@ export class SnippetService {
 
   private async generateSummaryInBackground(snippetId: string, text: string) {
     try {
-        const messages: Array<ChatMessage> = [
-            {
-                role: ChatRole.system,
-                content: "You are a strict summarizer. Summarize the following text in ~30 words or fewer."
-            },
-            {
-                role: ChatRole.user,
-                content: text
-            }
-        ];
+      const messages: Array<TextGenerationMessage> = [
+        {
+          role: ChatRole.system,
+          content: "You are a strict summarizer. Summarize the following text in ~30 words or fewer.",
+        },
+        {
+          role: ChatRole.user,
+          content: text,
+        },
+      ];
 
-        const summary = await this.llmService.chat(messages);
+      const summary = await this.llmService.generate(messages);
 
-        await SnippetModel.findByIdAndUpdate(snippetId, { summary });
+      await SnippetModel.findByIdAndUpdate(snippetId, { summary });
     } catch (err) {
-        console.error(`Failed to generate summary for snippet ${snippetId}`, err);
+      console.error(`Failed to generate summary for snippet ${snippetId}`, err);
     }
-}
-
+  } 
 }

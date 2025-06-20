@@ -37,7 +37,7 @@ describe('SnippetService', () => {
     const updateMock = jest.fn();
     (SnippetModel as any).findByIdAndUpdate = updateMock;
 
-    mockLLMService.chat.mockResolvedValue('This is a summary.');
+    mockLLMService.generate.mockResolvedValue('This is a summary.');
 
     const result = await service.createSnippet({ text: 'some code' });
 
@@ -100,13 +100,13 @@ describe('SnippetService', () => {
     const snippetId = 'err1';
     const text = 'fail summary';
 
-    mockLLMService.chat.mockRejectedValue(new Error('fail'));
+    mockLLMService.generate.mockRejectedValue(new Error('fail'));
 
     (SnippetModel as any).findByIdAndUpdate = jest.fn();
 
     const result = await (service as any).generateSummaryInBackground(snippetId, text);
 
-    expect(mockLLMService.chat).toHaveBeenCalledWith([
+    expect(mockLLMService.generate).toHaveBeenCalledWith([
       {
         role: ChatRole.system,
         content: 'You are a strict summarizer. Summarize the following text in ~30 words or fewer.',

@@ -1,7 +1,6 @@
-import { LLMService } from '../services/llm.service';
-import { SnippetService } from '../services/snippet.service';
-import { GetByIdRequest, CreateSnippetRequest } from '../types/snippet-controller-requests.type';
 import { Request, Response } from 'express';
+import { SnippetService } from '../services/snippet.service';
+import { CreateSnippetRequest, GetByIdRequest } from '../types/snippet-controller-requests.type';
 
 export class SnippetController {
   constructor(private readonly snippetService: SnippetService) {}
