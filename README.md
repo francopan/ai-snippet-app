@@ -115,7 +115,8 @@ curl http://localhost:3000/snippets
   - Setup a CI pipeline (GitHub Actions) to update images automatically in server (it currently builds and uploads to DockerHub).  
   - Enhance error handling, precisely when there is a connection error while waiting for the LLM result. Adding translation keys and reusing strings, also improving input validation.  
   - Implement JWT authentication.
-  - (Updated: Done) Add pagination to list, allow user to delete or retry snippet summary generation.
+  - (Updated: Done) Add pagination to list.
+  - Allow user to delete or retry snippet summary generation.
   - (Updated: Done) Add a streamable/live response from LLM.
 
 - **Trade-offs made:**  
