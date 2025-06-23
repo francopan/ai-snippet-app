@@ -4,6 +4,13 @@ const config: Config = {
   testEnvironment: 'jsdom',
   setupFiles: ["<rootDir>/jest.polyfill.ts"],
   setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
+  globals: {
+    'ts-jest': {
+      tsconfig: 'tsconfig.json',
+      // Habilite o suporte para decorators
+      diagnostics: false,  // opcional para silenciar warnings
+    },
+  },
   transform: {
     "^.+\\.(ts|tsx|js|jsx)$": "babel-jest",
   },

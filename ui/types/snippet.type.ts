@@ -1,6 +1,6 @@
 
 export type Snippet = {
-  _id: string;
+  id: string;
   text: string;
   summary: string | null;
 };

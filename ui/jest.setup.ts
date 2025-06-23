@@ -24,7 +24,16 @@ class LocalStorageMock {
     }),
   });
 
-
+  Object.defineProperty(global, 'import', {
+    value: {
+      meta: {
+        env: {
+          VITE_PUBLIC_API_URL: 'http://localhost:3000', 
+        },
+      },
+    },
+  });
+  
 
 global.fetch = fetch;
 global.Request = Request;

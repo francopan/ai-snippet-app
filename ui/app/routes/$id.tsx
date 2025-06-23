@@ -5,7 +5,7 @@ import { Snippet } from "types/snippet.type";
 import { SnippetAccordion } from "~/components/ui/snippet-accordion";
 
 export const loader: LoaderFunction = async ({ params }) => {
-  const response = await fetch(`${process.env.PUBLIC_API_URL}/snippets/${params.id}`);
+  const response = await fetch(`${process.env.VITE_PUBLIC_API_URL}/snippets/${params.id}`);
   const snippet: Snippet = await response.json();
   return json(snippet);
 };
@@ -26,9 +26,9 @@ export default function SnippetView() {
 
       <SnippetAccordion
         summary={snippet.summary}
-        _id={snippet._id}
+        id={snippet.id}
         text={snippet.text}
-        key={snippet._id}
+        key={snippet.id}
         showLink={false}
       />
     </Box>

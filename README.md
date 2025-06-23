@@ -101,11 +101,11 @@ curl http://localhost:3000/snippets
 
 ## Environment Variables
 
-| Variable   | Description                                  | Required |
-|------------|----------------------------------------------|----------|
-| `CHAT_API_KEY` | API key for AI provider                  | Yes      |
-| `MONGO_URI`  | MongoDB connection string                  | Yes      |
-| `PUBLIC_API_URL`  | Snippet API URL                       | Yes      |
+| Variable               | Description                                  | Required |
+|------------------------|----------------------------------------------|----------|
+| `CHAT_API_KEY`         | API key for AI provider                      | Yes      |
+| `MONGO_URI`            | MongoDB connection string                    | Yes      |
+| `VITE_PUBLIC_API_URL`  | Snippet API URL                              | Yes      |
 
 
 ## Post-challenge Reflection
