@@ -2,6 +2,9 @@
 
 This project implements a backend and frontend for an AI snippet summary application. Users can submit raw text snippets and receive AI-generated summaries for reuse in content workflows.
 
+![ScreenRecording2025-06-23at15 31 07-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/b60730cd-4afb-499c-8b75-dc8c23e88f9b)
+
+
 ## Setup Instructions
 
 ### Prerequisites
