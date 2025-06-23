@@ -13,7 +13,7 @@ export class OpenAIService implements LLMServiceInterface {
 
   constructor() {
     this.openai = new OpenAI({
-      apiKey: process.env.OPENAI_API_KEY,
+      apiKey: process.env.OPENAI_API_KEY ?? 'EMPTY_KEY',
     });
   }
 
