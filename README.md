@@ -103,23 +103,26 @@ curl http://localhost:3000/snippets
 
 | Variable               | Description                                  | Required |
 |------------------------|----------------------------------------------|----------|
+| `OPENAI_API_KEY`       | API key for OpenAI provider (still WIP)      | Yes      |
+| `GEMINI_API_KEY`       | API key for Google's Gemini provider         | Yes      |
 | `CHAT_API_KEY`         | API key for AI provider                      | Yes      |
 | `MONGO_URI`            | MongoDB connection string                    | Yes      |
 | `VITE_PUBLIC_API_URL`  | Snippet API URL                              | Yes      |
-
 
 ## Post-challenge Reflection
 
 - **What I’d improve given more time:**  
   - Setup a CI pipeline (GitHub Actions) to update images automatically in server (it currently builds and uploads to DockerHub).  
-  - Enhance error handling, adding translation keys and reusing strings, also improving input validation.  
+  - Enhance error handling, precisely when there is a connection error while waiting for the LLM result. Adding translation keys and reusing strings, also improving input validation.  
   - Implement JWT authentication.
-  - Add pagination to list, allow user to delete or retry snippet summary generation.
-  - Add a streamable/live response from LLM.
+  - (Updated: Done) Add pagination to list, allow user to delete or retry snippet summary generation.
+  - (Updated: Done) Add a streamable/live response from LLM.
 
 - **Trade-offs made:**  
   - Kept the AI prompt simple to prioritize core functionality.
   - Chose a lightweight local LLM for enhanced privacy. However, its smaller size impacts the quality of results.
+      - Update: Added Gemini as default provider
   - AI summaries are not generated during the initial POST request to avoid blocking the user. As streaming is not implemented, users must refresh the page to view the summary.
+      - Update: Implemented streaming, so no more need to refresh
 
 
