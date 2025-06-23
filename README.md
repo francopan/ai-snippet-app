@@ -103,7 +103,7 @@ curl http://localhost:3000/snippets
 
 | Variable               | Description                                  | Required |
 |------------------------|----------------------------------------------|----------|
-| `OPENAI_API_KEY`       | API key for OpenAI provider (still WIP)      | Yes      |
+| `OPENAI_API_KEY`       | API key for OpenAI provider (still WIP)      | Yes (No need to be valid)      |
 | `GEMINI_API_KEY`       | API key for Google's Gemini provider         | Yes      |
 | `CHAT_API_KEY`         | API key for AI provider                      | Yes      |
 | `MONGO_URI`            | MongoDB connection string                    | Yes      |
